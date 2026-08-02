@@ -6,6 +6,10 @@ A simple photo editor built using Python and OpenCV.
 
 \- https://github.com/bhumika06br/opencv-photo-editor
 
+\#Demo
+
+![Photo Editor Demo](screenshots/result.png)
+
 \## Features
 
 \- Read and display images
