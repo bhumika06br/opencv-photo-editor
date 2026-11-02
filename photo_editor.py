@@ -11,12 +11,13 @@ while True:
     print("\n----Photo Editor----")
     print("1.Convert to Grayscale")
     print("2.Resize Image")
-    print("3.Rotate Image")
-    print("4.Flip Image")
-    print("5.Show edited image")
-    print("6.Save Image")
-    print("7.Reset Image")
-    print("8.Exit")
+    print("3.Crop Image")
+    print("4.Rotate Image")
+    print("5.Flip Image")
+    print("6.Show edited image")
+    print("7.Save Image")
+    print("8.Reset Image")
+    print("9.Exit")
 
     choice=input("enter ur choice: ")
 
@@ -29,8 +30,16 @@ while True:
         height=int(input("enter new height: "))
         edited_img=cv.resize(edited_img,(width,height))
         print("Image resized")
-
+        
     elif choice=="3":
+        x=int(input("enter x coordinate: "))
+        y=int(input("enter y coordinate: "))
+        width=int(input("enter width: "))
+        height=int(input("enter height: "))
+        edited_img=edited_img[y:y+height, x:x+width]
+        print("Image cropped")
+        
+    elif choice=="4":
         angle=float(input("enter rotation angle (degrees): "))
         h,w=edited_img.shape[:2]
         center=(w//2,h//2)
@@ -39,7 +48,7 @@ while True:
         edited_img=cv.warpAffine(edited_img,matriax,(w,h))
         print("Image rotated")
 
-    elif choice=="4":
+    elif choice=="5":
         print("\nFilp Options")
         print("0 -vertical")
         print("1 -horizontal")
@@ -48,22 +57,22 @@ while True:
         edited_img=cv.flip(edited_img,flip_code)
         print("Image flipped")
 
-    elif choice=="5":
+    elif choice=="6":
         cv.imshow("Edited Image",edited_img)
         print("Press any key while the image window is selected to return to the menu.")
         cv.waitKey(0)
         cv.destroyAllWindows()
 
-    elif choice=="6":
+    elif choice=="7":
         filename=input("enter output file name(e.g.,output.jpg): ")
         cv.imwrite(filename,edited_img)
         print(f"Image saved as {filename}")
 
-    elif choice == "7":
+    elif choice == "8":
         edited_img = img.copy()
         print("Image reset to original")
 
-    elif choice=="8":
+    elif choice=="9":
         cv.destroyAllWindows()
         print("exiting..")
         break
